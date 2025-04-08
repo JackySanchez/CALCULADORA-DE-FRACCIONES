@@ -1,4 +1,47 @@
-<?php
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultado - Calculadora de Fracciones</title>
+    <style>
+        body {
+            background-color:rgb(254, 201, 233);
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        .resultado-box {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(214, 90, 226, 0.1);
+        }
+        h2 {
+            color: #555;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color:rgb(79, 11, 77);
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color:rgb(212, 74, 207);
+        }
+    </style>
+</head>
+<body>
+    <h1>Resultado</h1>
+    <div class="resultado-box">
+      <?php
 require 'Fraccion.php';  
 //La simplificación de las fracciones es importante para evitar resultados innecesariamente largos y poco legibles.//
 echo "<h1>Escenario 1: Pastelería de Ana</h1>";
