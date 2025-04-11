@@ -50,61 +50,44 @@ $harina = new Fraccion(11, 4);
 // Para obtener la cantidad de harina para media receta, multiplicamos la fracción 11/4 por 1/2.
 $mediaHarina = $harina->multiplicar(new Fraccion(1, 2));
 $mediaHarina->simplificar();  // Simplificar después de la operación
-echo "Harina para media receta: $mediaHarina <br>";
+echo "</p>1. Harina para media receta: " . $mediaHarina . "</p>";
 //Se multiplica la cantidad inicial de harina (11/4) por 2/1 para obtener el doble de la receta.
 $doble = $harina->multiplicar(new Fraccion(2, 1));
 $doble->simplificar();  // Simplificar después de la operación
-echo "Harina para doble receta: $doble <br>";
-
+echo "</p>2. Harina para doble receta:" . $doble . "</p>";
 //Se comienza con 1 2/3 (que es igual a 5/3).
 $azucar = (new Fraccion(5, 3))->multiplicar(new Fraccion(3, 1));  //Para calcular la cantidad de azúcar para 3 pasteles, se multiplica 5/3 por 3/1.
 $azucar->simplificar();  // Simplificar después de la operación
-echo "Azúcar para 3 pasteles: $azucar <br>";
+echo "</p>3. Azúcar para 3 pasteles:". $azucar. "</p>";
 
 echo "<hr>";
 echo "<h1>Escenario 2: Construcción de Cerca de Carlos</h1>";
-// Cada tabla mide 3 1/2 metros (7/2)
+//Mitad de una tabla (7/2 metros dividido entre 2).
 $tabla = new Fraccion(7, 2);
-// El jardín mide 14 2/3 metros (44/3).
+$mitadTabla = $tabla->dividir(new Fraccion(2, 1));
+echo "<p>1. Mitad de una tabla: " . $mitadTabla . " metros</p>";
+// Tablas necesarias para cercar jardín (44/3 metros dividido entre 7/2 metros)
 $jardin = new Fraccion(44, 3);
-// Cantidad de tablas necesarias
-//Para calcular cuántas tablas se necesitan, se divide el tamaño total del jardín (44/3) por el tamaño de cada tabla (7/2).
 $tablasNecesarias = $jardin->dividir($tabla);
-$tablasNecesarias->simplificar();  // Simplificar después de la operación
-echo "Cantidad de tablas necesarias: $tablasNecesarias <br>";
+echo "<p>2. Tablas necesarias: " . $tablasNecesarias . " (se usan 4 enteras y parte de la quinta)</p>";
+// 3Madera sobrante al usar 4 tablas completas
+$maderaUsada = (new Fraccion(4, 1))->multiplicar($tabla);
+$maderaSobrante = $jardin->restar($maderaUsada);
+echo "<p>3. Madera sobrante: " . $maderaSobrante . " metros</p>";
 
-// Madera Total
-//El número de tablas necesarias se multiplica por la longitud de cada tabla (7/2).
-$maderaTotal = $tablasNecesarias->multiplicar($tabla);
-$maderaTotal->simplificar();  // Simplificar después de la operación
-echo "Madera Total: $maderaTotal metros<br>";
-//La madera sobrante se calcula restando el tamaño del jardín (44/3) de la cantidad total de madera.
-$sobrante = $maderaTotal->restar($jardin);
-$sobrante->simplificar();  // Simplificar después de la operación
-echo "Madera Sobrante: $sobrante metros<br>";
+
 echo "<hr>";
-
 echo "<h1>Escenario 3: Terreno de los Hermanos</h1>";
-// El terreno total mide 7 5/8 hectáreas, que se representa como 61/8.
-$terreno = new Fraccion(61, 8);
-//Para dividir este terreno entre 3 hermanos, se realiza la división de 61/8 por 3/1.
-$cadaHermano = $terreno->dividir(new Fraccion(3, 1));
-$cadaHermano->simplificar();  // Simplificar después de la operación
-echo "Terreno para cada hermano: $cadaHermano hectáreas<br>";
-
-// // Un hermano compra 1 3/4 hectáreas adicionales, que se representa como 7/4.
-//Para calcular el total de terreno que recibe este hermano, se suma la fracción de terreno que le corresponde con la compra adicional.
+// 1. División inicial del terreno (61/8 hectáreas entre 3 hermanos)
+$terrenoTotal = new Fraccion(61, 8);
+$porcionInicial = $terrenoTotal->dividir(new Fraccion(3, 1));
+echo "<p>1. Terreno para cada hermano: $porcionInicial hectáreas</p>";
+// 2. Hermano que compra 7/4 hectáreas adicionales
 $compraExtra = new Fraccion(7, 4);
-$totalHermanoCompra = $cadaHermano->sumar($compraExtra);
-$totalHermanoCompra->simplificar();  // Simplificar después de la operación
-echo "Terreno del hermano que compra extra: $totalHermanoCompra hectáreas<br>";
-
-// Terreno restante a los otros dos hermanos
-//El terreno restante se calcula restando el terreno del hermano que compró extra del total de terreno disponible (7 5/8 hectáreas).
-$restante = $terreno->restar($totalHermanoCompra);
-//Este terreno restante se divide entre los otros dos hermanos
-$porHermanoRestante = $restante->dividir(new Fraccion(2, 1));
-$porHermanoRestante->simplificar();  // Simplificar después de la operación
-echo "Terreno de cada hermano restante: $porHermanoRestante hectáreas<br>";
+$totalConCompra = $porcionInicial->sumar($compraExtra);
+echo "<p>2. Terreno del hermano que compra extra: $totalConCompra hectáreas</p>";
+// 3. Cálculo para los otros dos hermanos
+$restoParaDos = $terrenoTotal->restar($totalConCompra);
+$porcionFinal = $restoParaDos->dividir(new Fraccion(2, 1));
+echo "<p>3. Terreno de cada hermano restante: $porcionFinal hectáreas</p>";
 ?>
-
